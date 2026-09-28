@@ -47,6 +47,16 @@ export default async function AdminDashboardPage() {
             Lihat KK yang menunggak dan catat pembayarannya.
           </p>
         </Link>
+
+        <Link
+          href="/admin/kas"
+          className="rounded-lg border border-hijau-200 bg-white p-5 hover:border-hijau-600"
+        >
+          <h2 className="font-judul text-lg font-semibold text-hijau-700">Kas Umum</h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Catat pemasukan dan pengeluaran kas RT di luar iuran.
+          </p>
+        </Link>
       </div>
     </AdminShell>
   );

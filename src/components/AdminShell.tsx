@@ -29,6 +29,7 @@ export function AdminShell({ username, children }: AdminShellProps) {
           <AdminNavLink href="/admin/kk">Data Warga</AdminNavLink>
           <AdminNavLink href="/admin/tagihan">Tagihan Iuran</AdminNavLink>
           <AdminNavLink href="/admin/tunggakan">Tunggakan</AdminNavLink>
+          <AdminNavLink href="/admin/kas">Kas Umum</AdminNavLink>
         </nav>
       </header>
 
