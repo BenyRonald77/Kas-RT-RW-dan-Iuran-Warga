@@ -43,3 +43,12 @@ body {
   outline: 3px solid #2f5d50;
   outline-offset: 2px;
 }
+
+@layer components {
+  .input {
+    @apply rounded border border-hijau-200 bg-white px-3 py-2 text-ink;
+  }
+  .input:focus {
+    @apply border-hijau-600 outline-none ring-2 ring-hijau-200;
+  }
+}

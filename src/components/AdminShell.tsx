@@ -26,6 +26,7 @@ export function AdminShell({ username, children }: AdminShellProps) {
         </div>
         <nav className="mx-auto flex max-w-5xl flex-wrap gap-1 px-4 pb-3 text-sm sm:px-6">
           <AdminNavLink href="/admin">Dasbor</AdminNavLink>
+          <AdminNavLink href="/admin/kk">Data Warga</AdminNavLink>
         </nav>
       </header>
 
