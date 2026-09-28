@@ -112,3 +112,7 @@ npm run start
   dicatat manual oleh pengurus berdasarkan bukti yang diterima.
 - Database SQLite berbentuk berkas (`prisma/dev.db`); cadangkan berkas ini
   secara berkala karena belum ada mekanisme backup otomatis.
+
+## Kontributor
+
+- BenyRonald77
