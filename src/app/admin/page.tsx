@@ -27,6 +27,16 @@ export default async function AdminDashboardPage() {
             Kelola daftar kepala keluarga sebagai dasar penagihan iuran.
           </p>
         </Link>
+
+        <Link
+          href="/admin/tagihan"
+          className="rounded-lg border border-hijau-200 bg-white p-5 hover:border-hijau-600"
+        >
+          <h2 className="font-judul text-lg font-semibold text-hijau-700">Tagihan Iuran</h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Generate tagihan bulanan otomatis dan lihat status tagihan.
+          </p>
+        </Link>
       </div>
     </AdminShell>
   );

@@ -27,6 +27,7 @@ export function AdminShell({ username, children }: AdminShellProps) {
         <nav className="mx-auto flex max-w-5xl flex-wrap gap-1 px-4 pb-3 text-sm sm:px-6">
           <AdminNavLink href="/admin">Dasbor</AdminNavLink>
           <AdminNavLink href="/admin/kk">Data Warga</AdminNavLink>
+          <AdminNavLink href="/admin/tagihan">Tagihan Iuran</AdminNavLink>
         </nav>
       </header>
 
