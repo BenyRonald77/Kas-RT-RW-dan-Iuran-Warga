@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { NAMA_BULAN, formatRupiah, formatTanggal } from "@/lib/status";
+import { CatatPembayaranForm } from "@/components/CatatPembayaranForm";
 
 type Tagihan = {
   id: string;
@@ -10,6 +11,7 @@ type Tagihan = {
   nominal: number;
   jatuhTempo: string;
   status: string;
+  totalTerbayar: number;
   kk: { id: string; nama: string; nomorKK: string };
 };
 
@@ -42,6 +44,7 @@ export function TagihanManager({
   const [hasil, setHasil] = useState<HasilGenerate | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [menyimpanPengaturan, setMenyimpanPengaturan] = useState(false);
+  const [sedangBayar, setSedangBayar] = useState<string | null>(null);
 
   async function generateTagihan() {
     setMenghasilkan(true);
@@ -220,7 +223,7 @@ export function TagihanManager({
           </div>
         ) : (
           <div className="mt-3 overflow-x-auto rounded-lg border border-hijau-200 bg-white">
-            <table className="w-full min-w-[640px] text-left text-sm">
+            <table className="w-full min-w-[720px] text-left text-sm">
               <thead className="border-b border-hijau-200 bg-hijau-50/50 text-ink/70">
                 <tr>
                   <th className="px-4 py-3 font-medium">KK</th>
@@ -228,32 +231,76 @@ export function TagihanManager({
                   <th className="px-4 py-3 font-medium">Nominal</th>
                   <th className="px-4 py-3 font-medium">Jatuh Tempo</th>
                   <th className="px-4 py-3 font-medium">Status</th>
+                  <th className="px-4 py-3 font-medium">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 {daftar.map((t) => (
-                  <tr key={t.id} className="border-b border-hijau-100 last:border-0">
-                    <td className="px-4 py-3">
-                      {t.kk.nama}
-                      <span className="block text-xs text-ink/50">{t.kk.nomorKK}</span>
-                    </td>
-                    <td className="px-4 py-3">
-                      {NAMA_BULAN[t.bulan - 1]} {t.tahun}
-                    </td>
-                    <td className="px-4 py-3">{formatRupiah(t.nominal)}</td>
-                    <td className="px-4 py-3">{formatTanggal(t.jatuhTempo)}</td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={
-                          t.status === "LUNAS"
-                            ? "rounded bg-hijau-50 px-2 py-0.5 text-xs font-medium text-hijau-700"
-                            : "rounded bg-waspada-50 px-2 py-0.5 text-xs font-medium text-waspada-600"
-                        }
-                      >
-                        {t.status === "LUNAS" ? "Lunas" : "Belum Bayar"}
-                      </span>
-                    </td>
-                  </tr>
+                  <Fragment key={t.id}>
+                    <tr className="border-b border-hijau-100 last:border-0">
+                      <td className="px-4 py-3">
+                        {t.kk.nama}
+                        <span className="block text-xs text-ink/50">{t.kk.nomorKK}</span>
+                      </td>
+                      <td className="px-4 py-3">
+                        {NAMA_BULAN[t.bulan - 1]} {t.tahun}
+                      </td>
+                      <td className="px-4 py-3">
+                        {formatRupiah(t.nominal)}
+                        {t.totalTerbayar > 0 && t.status !== "LUNAS" && (
+                          <span className="block text-xs text-sawo-600">
+                            Terbayar {formatRupiah(t.totalTerbayar)}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-3">{formatTanggal(t.jatuhTempo)}</td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={
+                            t.status === "LUNAS"
+                              ? "rounded bg-hijau-50 px-2 py-0.5 text-xs font-medium text-hijau-700"
+                              : "rounded bg-waspada-50 px-2 py-0.5 text-xs font-medium text-waspada-600"
+                          }
+                        >
+                          {t.status === "LUNAS" ? "Lunas" : "Belum Bayar"}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3">
+                        {t.status !== "LUNAS" && (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setSedangBayar(sedangBayar === t.id ? null : t.id)
+                            }
+                            className="text-hijau-700 hover:underline"
+                          >
+                            {sedangBayar === t.id ? "Tutup" : "Catat Pembayaran"}
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                    {sedangBayar === t.id && (
+                      <tr>
+                        <td colSpan={6} className="bg-paper px-4 py-4">
+                          <CatatPembayaranForm
+                            tagihanId={t.id}
+                            sisa={t.nominal - t.totalTerbayar}
+                            onBatal={() => setSedangBayar(null)}
+                            onSukses={({ status, totalTerbayar: baru }) => {
+                              setDaftar((prev) =>
+                                prev.map((item) =>
+                                  item.id === t.id
+                                    ? { ...item, status, totalTerbayar: baru }
+                                    : item
+                                )
+                              );
+                              setSedangBayar(null);
+                            }}
+                          />
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
                 ))}
               </tbody>
             </table>

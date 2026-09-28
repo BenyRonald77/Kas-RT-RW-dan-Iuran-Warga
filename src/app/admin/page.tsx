@@ -37,6 +37,16 @@ export default async function AdminDashboardPage() {
             Generate tagihan bulanan otomatis dan lihat status tagihan.
           </p>
         </Link>
+
+        <Link
+          href="/admin/tunggakan"
+          className="rounded-lg border border-hijau-200 bg-white p-5 hover:border-hijau-600"
+        >
+          <h2 className="font-judul text-lg font-semibold text-hijau-700">Tunggakan</h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Lihat KK yang menunggak dan catat pembayarannya.
+          </p>
+        </Link>
       </div>
     </AdminShell>
   );
