@@ -30,6 +30,7 @@ export function AdminShell({ username, children }: AdminShellProps) {
           <AdminNavLink href="/admin/tagihan">Tagihan Iuran</AdminNavLink>
           <AdminNavLink href="/admin/tunggakan">Tunggakan</AdminNavLink>
           <AdminNavLink href="/admin/kas">Kas Umum</AdminNavLink>
+          <AdminNavLink href="/admin/pengumuman">Pengumuman</AdminNavLink>
         </nav>
       </header>
 

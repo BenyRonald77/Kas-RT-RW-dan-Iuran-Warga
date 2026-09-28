@@ -57,6 +57,16 @@ export default async function AdminDashboardPage() {
             Catat pemasukan dan pengeluaran kas RT di luar iuran.
           </p>
         </Link>
+
+        <Link
+          href="/admin/pengumuman"
+          className="rounded-lg border border-hijau-200 bg-white p-5 hover:border-hijau-600"
+        >
+          <h2 className="font-judul text-lg font-semibold text-hijau-700">Pengumuman</h2>
+          <p className="mt-2 text-sm text-ink/70">
+            Buat pengumuman dan bagikan lewat tautan WhatsApp.
+          </p>
+        </Link>
       </div>
     </AdminShell>
   );
