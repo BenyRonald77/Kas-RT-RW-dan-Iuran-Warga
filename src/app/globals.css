@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Catatan arah desain (Design Read, lihat .agents/skills/antislop):
+  Membaca ini sebagai: layanan sipil/komunitas untuk warga RT/RW, gaya
+  bersahaja dan hangat seperti buku kas, bukan gaya startup teknis.
+  Dial: ENERGY 1 (tenang, sekelas GOV.UK) / RHYTHM 2 (bervariasi secukupnya
+  antar jenis layar: dasbor, formulir, tabel, laporan publik) / MOTION 1
+  (hanya status hover/focus, tanpa animasi hias).
+
+  Alasan setiap pilihan (R-31):
+  - Warna utama hijau tua (hijau-600): melambangkan kas/pertumbuhan bersama,
+    dipakai untuk elemen penting (tombol utama, status lunas).
+  - Latar "paper" krem hangat, bukan putih pucat: menghindari kesan steril
+    aplikasi generik AI, terasa seperti buku kas fisik.
+  - Aksen sawo/terracotta dipakai secukupnya pada elemen yang perlu
+    perhatian (tombol aksi kedua, tautan WhatsApp), bukan di semua tempat.
+  - Merah "waspada" khusus untuk status tunggakan/peringatan, tidak dipakai
+    untuk hal lain agar tetap bermakna.
+  - Judul memakai huruf serif (Lora): kesan hangat, tepercaya, seperti
+    dokumen resmi warga, bukan huruf mono/AI look.
+  - Isi & UI memakai huruf sans humanis (Public Sans): dirancang untuk
+    layanan publik, sangat mudah dibaca di layar kecil warga.
+  - Sudut membulat sedang (8px), bukan pil, agar kartu/tombol/input terasa
+    berbeda perannya, bukan seragam.
+  - Bayangan hanya dipakai pada elemen mengambang (menu, modal), bukan
+    default di semua kartu.
+*/
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #faf6ed;
+  color: #2a2420;
+}
+
+/* Fokus keyboard harus selalu terlihat jelas (R-32) */
+:focus-visible {
+  outline: 3px solid #2f5d50;
+  outline-offset: 2px;
+}

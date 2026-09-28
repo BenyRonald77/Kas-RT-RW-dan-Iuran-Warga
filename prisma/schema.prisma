@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Satu akun pengurus/bendahara yang bisa masuk untuk mengelola data.
+// Skema lengkap (KepalaKeluarga, TagihanIuran, Pembayaran, KasTransaksi,
+// Pengumuman) ditambahkan pada commit fitur berikutnya.
+model Admin {
+  id           String @id @default(cuid())
+  username     String @unique
+  passwordHash String
+}
