@@ -258,7 +258,7 @@ export function KKManager({ dataAwal }: { dataAwal: KK[] }) {
       {daftar.length === 0 ? (
         <div className="rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
           <p className="text-ink/70">Belum ada data KK.</p>
-          <p className="mt-1 text-sm text-ink/50">
+          <p className="mt-1 text-sm text-ink/70">
             Tambahkan KK pertama untuk mulai membuat tagihan iuran.
           </p>
         </div>
@@ -287,7 +287,7 @@ export function KKManager({ dataAwal }: { dataAwal: KK[] }) {
                       className={
                         kk.aktif
                           ? "rounded bg-hijau-50 px-2 py-0.5 text-xs font-medium text-hijau-700"
-                          : "rounded bg-ink/5 px-2 py-0.5 text-xs font-medium text-ink/50"
+                          : "rounded bg-ink/5 px-2 py-0.5 text-xs font-medium text-ink/70"
                       }
                     >
                       {kk.aktif ? "Aktif" : "Nonaktif"}

@@ -8,7 +8,7 @@ type AdminShellProps = {
 
 /**
  * Kerangka halaman admin (setelah login). Daftar navigasi hanya memuat
- * tautan ke halaman yang benar-benar ada (R-24) — bertambah seiring fitur
+ * tautan ke halaman yang benar-benar ada (R-24), bertambah seiring fitur
  * dibangun pada commit berikutnya.
  */
 export function AdminShell({ username, children }: AdminShellProps) {

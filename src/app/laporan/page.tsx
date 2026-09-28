@@ -44,7 +44,7 @@ export default async function LaporanPublikPage() {
           <p className="mt-1 font-judul text-3xl font-semibold text-hijau-700">
             {formatRupiah(saldo)}
           </p>
-          <p className="mt-2 text-xs text-ink/50">
+          <p className="mt-2 text-xs text-ink/70">
             Gabungan seluruh iuran yang telah dibayar warga dan kas umum RT.
           </p>
         </section>
@@ -56,7 +56,7 @@ export default async function LaporanPublikPage() {
           {rekapBulanan.length === 0 ? (
             <div className="mt-3 rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
               <p className="text-ink/70">Belum ada transaksi kas yang tercatat.</p>
-              <p className="mt-1 text-sm text-ink/50">
+              <p className="mt-1 text-sm text-ink/70">
                 Rekap akan muncul di sini setelah pengurus mencatat transaksi pertama.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default async function LaporanPublikPage() {
           {rekapIuran.length === 0 ? (
             <div className="mt-3 rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
               <p className="text-ink/70">Tagihan iuran bulan ini belum dibuat oleh pengurus.</p>
-              <p className="mt-1 text-sm text-ink/50">
+              <p className="mt-1 text-sm text-ink/70">
                 Rekap status iuran akan muncul setelah tagihan bulan berjalan dibuat.
               </p>
             </div>

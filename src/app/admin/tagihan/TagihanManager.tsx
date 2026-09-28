@@ -192,7 +192,7 @@ export function TagihanManager({
             type="button"
             onClick={generateTagihan}
             disabled={menghasilkan}
-            className="rounded bg-sawo-500 px-4 py-2 text-sm font-medium text-white hover:bg-sawo-600 disabled:opacity-60"
+            className="rounded bg-sawo-600 px-4 py-2 text-sm font-medium text-white hover:bg-sawo-700 disabled:opacity-60"
           >
             {menghasilkan ? "Memproses..." : "Generate Tagihan Bulan Ini"}
           </button>
@@ -217,7 +217,7 @@ export function TagihanManager({
         {daftar.length === 0 ? (
           <div className="mt-3 rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
             <p className="text-ink/70">Belum ada tagihan.</p>
-            <p className="mt-1 text-sm text-ink/50">
+            <p className="mt-1 text-sm text-ink/70">
               Klik &quot;Generate Tagihan Bulan Ini&quot; di atas setelah menambahkan data KK aktif.
             </p>
           </div>
@@ -240,7 +240,7 @@ export function TagihanManager({
                     <tr className="border-b border-hijau-100 last:border-0">
                       <td className="px-4 py-3">
                         {t.kk.nama}
-                        <span className="block text-xs text-ink/50">{t.kk.nomorKK}</span>
+                        <span className="block text-xs text-ink/70">{t.kk.nomorKK}</span>
                       </td>
                       <td className="px-4 py-3">
                         {NAMA_BULAN[t.bulan - 1]} {t.tahun}

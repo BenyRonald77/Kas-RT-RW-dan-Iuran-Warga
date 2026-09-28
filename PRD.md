@@ -1,4 +1,4 @@
-# PRD — Aplikasi Kas RT/RW dan Iuran Warga
+# PRD: Aplikasi Kas RT/RW dan Iuran Warga
 
 ## 1. Latar Belakang & Tujuan
 
@@ -41,11 +41,11 @@ Tujuan utama: membuat pengelolaan kas RT/RW lebih rapi, akurat, dan transparan, 
 
 ### 3.2 Tidak Termasuk dalam Ruang Lingkup (Batasan)
 - **Integrasi resmi WhatsApp Business API**: aplikasi ini TIDAK terhubung ke WhatsApp Business API, Meta Cloud API, atau penyedia pihak ketiga (mis. Twilio, Fonnte, dll) karena tidak tersedia kredensial resmi. Pengumuman WhatsApp diimplementasikan sepenuhnya sebagai **tautan klik-kirim** (`https://wa.me/<no_hp>?text=<pesan terenkode>`) yang membuka aplikasi WhatsApp milik admin dengan draf pesan sudah terisi. Admin tetap harus menekan tombol "Kirim" di WhatsApp secara manual, satu per satu, untuk setiap warga. Tidak ada pengiriman otomatis massal, tidak ada laporan terkirim/dibaca, dan tidak ada balasan warga yang tertangkap otomatis oleh sistem.
-- Tidak ada pembayaran online/payment gateway (transfer bank, e-wallet, QRIS) — pencatatan pembayaran bersifat manual berdasarkan bukti yang diterima admin.
+- Tidak ada pembayaran online/payment gateway (transfer bank, e-wallet, QRIS). Pencatatan pembayaran bersifat manual berdasarkan bukti yang diterima admin.
 - Tidak ada multi-RT/multi-RW dalam satu instance (aplikasi ini didesain untuk satu wilayah RT/RW).
-- Tidak ada multi-level role (misal ketua RT, sekretaris, bendahara terpisah) pada versi ini — hanya satu akun admin/bendahara.
+- Tidak ada multi-level role (misal ketua RT, sekretaris, bendahara terpisah) pada versi ini, hanya satu akun admin/bendahara.
 - Tidak ada notifikasi push/email otomatis.
-- Tidak ada aplikasi mobile native — hanya web app responsif.
+- Tidak ada aplikasi mobile native, hanya web app responsif.
 - Tidak ada fitur ekspor PDF/Excel pada versi ini (dapat menjadi pengembangan lanjutan).
 
 ## 4. Daftar Fitur & User Story
@@ -72,7 +72,7 @@ Tujuan utama: membuat pengelolaan kas RT/RW lebih rapi, akurat, dan transparan, 
 ### F5. Laporan Publik Read-Only
 - **US12**: Sebagai warga, saya ingin membuka halaman laporan tanpa perlu login untuk melihat ringkasan saldo kas RT/RW saat ini.
 - **US13**: Sebagai warga, saya ingin melihat rekap kas masuk-keluar per bulan (termasuk dari iuran) agar tahu ke mana uang bersama digunakan.
-- **US14**: Sebagai warga, saya ingin melihat rekap status iuran (jumlah KK lunas vs belum lunas) tanpa melihat nama lengkap dan alamat detail warga lain, demi menjaga privasi — data yang ditampilkan adalah nomor KK dan status saja.
+- **US14**: Sebagai warga, saya ingin melihat rekap status iuran (jumlah KK lunas vs belum lunas) tanpa melihat nama lengkap dan alamat detail warga lain, demi menjaga privasi: data yang ditampilkan adalah nomor KK dan status saja.
 
 ### F6. Pengumuman & Tautan Broadcast WhatsApp
 - **US15**: Sebagai bendahara, saya ingin membuat pengumuman (judul + isi) yang tersimpan dan bisa dilihat riwayatnya.
@@ -170,30 +170,30 @@ Tujuan utama: membuat pengelolaan kas RT/RW lebih rapi, akurat, dan transparan, 
 
 ## 7. Kriteria Penerimaan per Fitur
 
-**F1 — CRUD KK**
+**F1: CRUD KK**
 - [ ] Admin dapat menambah, mengubah, dan menonaktifkan KK.
 - [ ] Nomor KK harus unik; sistem menolak duplikasi dengan pesan error yang jelas.
 - [ ] KK nonaktif tidak muncul di proses generate tagihan berikutnya.
 
-**F2 — Generate Tagihan Otomatis**
+**F2: Generate Tagihan Otomatis**
 - [ ] Tombol generate hanya membuat tagihan untuk KK aktif yang belum punya tagihan bulan/tahun berjalan.
 - [ ] Menjalankan generate dua kali di bulan yang sama tidak menghasilkan duplikasi.
 - [ ] Jatuh tempo otomatis terisi tanggal 10 bulan berjalan.
 
-**F3 — Pembayaran & Tunggakan**
+**F3: Pembayaran & Tunggakan**
 - [ ] Mencatat pembayaran mengubah status tagihan menjadi LUNAS bila jumlah cukup.
 - [ ] Halaman tunggakan hanya menampilkan tagihan BELUM_BAYAR dengan jatuh tempo < hari ini.
 - [ ] Tunggakan diakumulasi dan dikelompokkan per KK dengan total nominal.
 
-**F4 — Kas Umum**
+**F4: Kas Umum**
 - [ ] Admin dapat mencatat transaksi MASUK/KELUAR dan melihat saldo berjalan yang terhitung benar (saldo = akumulasi masuk - keluar terurut tanggal).
 
-**F5 — Laporan Publik**
+**F5: Laporan Publik**
 - [ ] Halaman dapat diakses tanpa login.
 - [ ] Menampilkan saldo kas total, rekap bulanan, dan rekap status iuran per nomor KK (tanpa menampilkan nama lengkap + alamat lengkap sekaligus).
 - [ ] Tidak ada tombol/form yang mengubah data dari halaman ini.
 
-**F6 — Pengumuman & WhatsApp**
+**F6: Pengumuman & WhatsApp**
 - [ ] Admin dapat membuat pengumuman dan melihat riwayatnya.
 - [ ] Sistem menghasilkan tautan `wa.me` valid (nomor dinormalisasi ke format internasional, pesan ter-encode dengan benar) untuk setiap KK aktif yang punya nomor HP.
 - [ ] Halaman menampilkan penjelasan eksplisit bahwa pengiriman bersifat manual, bukan broadcast otomatis.
@@ -202,7 +202,7 @@ Tujuan utama: membuat pengelolaan kas RT/RW lebih rapi, akurat, dan transparan, 
 
 - **Framework**: Next.js 14+ (App Router), TypeScript.
 - **Styling**: Tailwind CSS, dengan palet dan tipografi kustom (bukan default) sesuai identitas visual aplikasi warga.
-- **ORM & Database**: Prisma ORM dengan SQLite (file `prisma/dev.db`) — tanpa dependensi database eksternal, mudah dijalankan di lingkungan mana pun.
+- **ORM & Database**: Prisma ORM dengan SQLite (file `prisma/dev.db`), tanpa dependensi database eksternal, mudah dijalankan di lingkungan mana pun.
 - **Validasi**: Zod untuk validasi input form dan payload API.
 - **Autentikasi**: Cookie sesi sederhana (HTTP-only) untuk satu akun admin, password di-hash dengan bcrypt. Middleware melindungi seluruh rute `/admin/*` dan API tulis-data.
 - **Rute Publik**: `/laporan` dapat diakses tanpa autentikasi, hanya membaca data (read-only).

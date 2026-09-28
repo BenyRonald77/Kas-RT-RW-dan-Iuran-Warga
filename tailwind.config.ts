@@ -25,6 +25,7 @@ const config: Config = {
           400: "#D98B4B",
           500: "#C1652F", // aksen: hangat, komunitas, tombol utama
           600: "#A6521F",
+          700: "#84401A",
         },
         waspada: {
           50: "#FBECEA",

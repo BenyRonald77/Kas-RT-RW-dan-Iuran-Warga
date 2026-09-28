@@ -27,6 +27,10 @@
     berbeda perannya, bukan seragam.
   - Bayangan hanya dipakai pada elemen mengambang (menu, modal), bukan
     default di semua kartu.
+  - Tema gelap tidak disediakan dengan sengaja: identitas "buku kas kertas"
+    yang dituju tidak masuk akal dalam mode gelap, dan pengguna utama
+    (warga umum, bukan pengguna teknis) tidak mengharapkannya di layanan
+    sejenis ini (R-21).
 */
 
 :root {

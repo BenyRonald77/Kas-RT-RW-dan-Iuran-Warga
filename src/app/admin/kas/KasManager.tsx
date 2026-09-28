@@ -259,7 +259,7 @@ export function KasManager({ dataAwal }: { dataAwal: Transaksi[] }) {
       {daftar.length === 0 ? (
         <div className="rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
           <p className="text-ink/70">Belum ada transaksi kas umum.</p>
-          <p className="mt-1 text-sm text-ink/50">
+          <p className="mt-1 text-sm text-ink/70">
             Tambahkan transaksi pertama untuk mulai mencatat kas RT.
           </p>
         </div>

@@ -55,7 +55,7 @@ export function TunggakanManager({ dataAwal }: { dataAwal: TagihanTunggakan[] })
     return (
       <div className="rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
         <p className="text-ink/70">Tidak ada tunggakan saat ini.</p>
-        <p className="mt-1 text-sm text-ink/50">
+        <p className="mt-1 text-sm text-ink/70">
           Semua tagihan yang sudah jatuh tempo telah lunas. Kerja bagus.
         </p>
       </div>
@@ -74,7 +74,7 @@ export function TunggakanManager({ dataAwal }: { dataAwal: TagihanTunggakan[] })
           <div className="flex flex-wrap items-baseline justify-between gap-2">
             <h2 className="font-judul text-lg font-semibold text-ink">
               {kk.nama}
-              <span className="ml-2 text-sm font-normal text-ink/50">{kk.nomorKK}</span>
+              <span className="ml-2 text-sm font-normal text-ink/70">{kk.nomorKK}</span>
             </h2>
             <p className="text-sm font-medium text-waspada-600">
               Total tunggakan: {formatRupiah(total)}

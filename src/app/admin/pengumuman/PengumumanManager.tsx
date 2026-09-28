@@ -113,7 +113,7 @@ export function PengumumanManager({
         {daftar.length === 0 ? (
           <div className="mt-3 rounded-lg border border-dashed border-hijau-200 bg-white p-8 text-center">
             <p className="text-ink/70">Belum ada pengumuman.</p>
-            <p className="mt-1 text-sm text-ink/50">
+            <p className="mt-1 text-sm text-ink/70">
               Buat pengumuman pertama menggunakan formulir di atas.
             </p>
           </div>
@@ -124,7 +124,7 @@ export function PengumumanManager({
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h3 className="font-judul text-base font-semibold text-ink">{p.judul}</h3>
-                    <p className="text-xs text-ink/50">{formatTanggal(p.tanggal)}</p>
+                    <p className="text-xs text-ink/70">{formatTanggal(p.tanggal)}</p>
                     <p className="mt-2 whitespace-pre-wrap text-sm text-ink/80">{p.isi}</p>
                   </div>
                   <button
@@ -144,7 +144,7 @@ export function PengumumanManager({
                     </p>
 
                     {kkPunyaHp.length === 0 ? (
-                      <p className="mt-3 text-sm text-ink/50">
+                      <p className="mt-3 text-sm text-ink/70">
                         Tidak ada KK aktif dengan nomor HP terdaftar.
                       </p>
                     ) : (
@@ -163,7 +163,7 @@ export function PengumumanManager({
                               >
                                 <span>
                                   {kk.nama}
-                                  <span className="ml-2 text-xs text-ink/50">{kk.noHp}</span>
+                                  <span className="ml-2 text-xs text-ink/70">{kk.noHp}</span>
                                 </span>
                                 <span className="text-hijau-700">Kirim &rarr;</span>
                               </a>
@@ -174,7 +174,7 @@ export function PengumumanManager({
                     )}
 
                     {kkTanpaHp.length > 0 && (
-                      <p className="mt-3 text-xs text-ink/50">
+                      <p className="mt-3 text-xs text-ink/70">
                         {kkTanpaHp.length} KK aktif tidak punya nomor HP terdaftar dan
                         tidak bisa dikirimi tautan: {kkTanpaHp.map((kk) => kk.nama).join(", ")}.
                       </p>
