@@ -8,10 +8,82 @@ datasource db {
 }
 
 // Satu akun pengurus/bendahara yang bisa masuk untuk mengelola data.
-// Skema lengkap (KepalaKeluarga, TagihanIuran, Pembayaran, KasTransaksi,
-// Pengumuman) ditambahkan pada commit fitur berikutnya.
 model Admin {
   id           String @id @default(cuid())
   username     String @unique
   passwordHash String
+}
+
+// Data kepala keluarga (KK) sebagai basis penagihan iuran bulanan.
+model KepalaKeluarga {
+  id        String   @id @default(cuid())
+  nomorKK   String   @unique
+  nama      String
+  alamat    String
+  noHp      String?
+  aktif     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tagihan TagihanIuran[]
+}
+
+// Nilai valid untuk field `status` di bawah: "BELUM_BAYAR" | "LUNAS".
+// SQLite tidak mendukung tipe enum asli Prisma, jadi divalidasi sebagai
+// String lewat Zod di lapisan aplikasi (lihat src/lib/status.ts).
+
+// Tagihan iuran bulanan untuk satu KK pada satu bulan/tahun tertentu.
+// Dibuat otomatis lewat fitur "Generate Tagihan Bulan Ini".
+model TagihanIuran {
+  id          String        @id @default(cuid())
+  kkId        String
+  kk          KepalaKeluarga @relation(fields: [kkId], references: [id], onDelete: Cascade)
+  bulan       Int
+  tahun       Int
+  nominal     Int
+  jatuhTempo  DateTime
+  status      String        @default("BELUM_BAYAR")
+  createdAt   DateTime      @default(now())
+
+  pembayaran Pembayaran[]
+
+  // Mencegah tagihan ganda untuk KK yang sama pada bulan & tahun yang sama.
+  @@unique([kkId, bulan, tahun])
+}
+
+// Pencatatan pembayaran terhadap satu tagihan. Satu tagihan bisa dibayar
+// lebih dari sekali (mis. dicicil) sebelum lunas.
+model Pembayaran {
+  id        String       @id @default(cuid())
+  tagihanId String
+  tagihan   TagihanIuran @relation(fields: [tagihanId], references: [id], onDelete: Cascade)
+  tanggal   DateTime
+  jumlah    Int
+  metode    String
+  catatan   String?
+  createdAt DateTime     @default(now())
+}
+
+// Nilai valid untuk field `jenis` di bawah: "MASUK" | "KELUAR" (lihat
+// src/lib/status.ts untuk validasi Zod-nya).
+
+// Transaksi kas umum RT di luar iuran (mis. kegiatan warga, perbaikan
+// fasilitas, sumbangan, dsb).
+model KasTransaksi {
+  id        String   @id @default(cuid())
+  tanggal   DateTime
+  jenis     String
+  kategori  String
+  uraian    String
+  jumlah    Int
+  createdAt DateTime @default(now())
+}
+
+// Pengumuman lingkungan yang dibuat pengurus dan disebarkan lewat tautan
+// klik-kirim WhatsApp (lihat PRD bagian Ruang Lingkup untuk batasannya).
+model Pengumuman {
+  id      String   @id @default(cuid())
+  judul   String
+  isi     String
+  tanggal DateTime @default(now())
 }
